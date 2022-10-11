@@ -10,6 +10,7 @@ const Container = styled.div`
   color: ${({theme}) => theme.text};
   display: flex;
   flex-direction: column;
+  font-family: jetBrains Mono;
   justify-items: center;
   align-items: center;
   gap: 15px;
@@ -38,19 +39,20 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  display: flex;
-  text-align: center;
-  padding: 5px 15px;
-  color: green; 
-  border-radius: 15px;
-  font-weight: 500;
-  border-radius: 15px;
-  font-size: 19px;
+  border-radius: 5px;
+  border: none;
+    font-family: jetBrains Mono;
+  gap:5px;
+  margin-top: 20px;
+  font-size: 17px;
+  color: ${({theme}) => theme.btnColor};
+  text-decoration:bold;
+  background-color: transparent;
+  padding: 4px 8px;
   cursor: pointer;
-
-  :hover {
-    background-color: gray;
-    color: white;
+  border:1px solid green;
+  :hover{
+    border:1px solid #6df890;
   }
 `;
 
@@ -136,10 +138,10 @@ export const Home = () => {
       });
       setPin(res.data);
     } catch (err) {
-        alert()
-    }
-  };
-
+        alert("Please paste the link")
+      }
+    };
+    
   const handleReceive = async (e) => {
     e.preventDefault();
 
@@ -147,7 +149,7 @@ export const Home = () => {
       const res = await axiosInstance.get(`/getlink/${pin2}`);
       setLink2(res.data);
     } catch (err) {
-      console.log(err);
+      alert("Please enter valid token id")
     }
   };
 

@@ -17,10 +17,18 @@ export const send = async (req, res, next) => {
 export const receive = async (req, res, next) => {
   const id = req.params.id;
   // Number(id);
-  try {
-    const link = await Links.findOne({ Uid: id });
-    res.status(200).json(link);
-  } catch (err) {
-    next(err);
+  if (id) {
+    try {
+      const link = await Links.findOne({ Uid: id });
+      if (link) {
+        res.status(200).json(link);
+      } else {
+        res.status(200).json("Please Enter Token");
+      }
+    } catch (err) {
+      next(err);
+    }
+  }else{
+    res.json({"message":"Please enter valid token"})
   }
 };

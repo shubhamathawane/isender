@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+// import Button from '@mui/material/Button';
+import NightsStayIcon from "@mui/icons-material/NightsStay";
 import styled from "styled-components";
-// import NightlightIcon from '@mui/icons-material/Nightlight';
-import Button from '@mui/material/Button';
+import LightModeIcon from "@mui/icons-material/LightMode";
+// import LightIcon from "@mui/icons-material/Light";
+import { Link } from "react-router-dom";
 
-const NavBar = ({darkMode, setDarkMode}) => {
+const NavBar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-
+  const Button = styled.button`
+    border: none;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+  `;
 
   return (
     <Nav>
@@ -19,11 +27,23 @@ const NavBar = ({darkMode, setDarkMode}) => {
         <span />
       </Hamburger>
       <Menu isOpen={isOpen}>
-        <Button onClick={() => setDarkMode(!darkMode)} variant="outlined" pill>{darkMode ? "Light" : "Dark"} Mode </Button>
-        <MenuLink href="">Our Work</MenuLink>
-        <MenuLink href="">About</MenuLink>
-        <MenuLink href="">Careers</MenuLink>
-        <MenuLink href="">Contact</MenuLink>
+        <Button
+          title="change Theme"
+          onClick={() => setDarkMode(!darkMode)}
+          variant="outlined"
+          pill
+        >
+          {darkMode ? (
+            <LightModeIcon style={{ color: "#55f56a84" }} />
+          ) : (
+            <NightsStayIcon color="primary" />
+          )}
+        </Button>
+
+        <Slink to="/">Home</Slink>
+        <Slink to="/code" >Code Share</Slink>
+        <Slink to="">About</Slink>
+        <Slink to="">Contact</Slink>
       </Menu>
     </Nav>
   );
@@ -31,7 +51,7 @@ const NavBar = ({darkMode, setDarkMode}) => {
 
 export default NavBar;
 
-const MenuLink = styled.a`
+const Slink = styled(Link)`
   padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
@@ -42,15 +62,16 @@ const MenuLink = styled.a`
   &:hover {
     color: #7b7fda;
   }
-`;
+`
 
 const Nav = styled.div`
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: jetBrains Mono;
   flex-wrap: wrap;
-  background: ${({theme}) => theme.bg};
+  background: ${({ theme }) => theme.bg};
   position: absolute;
   top: 0;
   left: 0;
@@ -73,6 +94,7 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position:sticky;
   position: relative;
   @media (max-width: 768px) {
     overflow: hidden;
@@ -90,7 +112,7 @@ const Hamburger = styled.div`
   span {
     height: 2px;
     width: 25px;
-    background: #7b7fda;
+    background: #55f56a84;
     margin-bottom: 4px;
     border-radius: 5px;
   }

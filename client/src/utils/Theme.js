@@ -3,7 +3,8 @@ export const darkTheme = {
     bgLighter:"202020",
     text:"white",
     textSoft:"#aaaaaa",
-    soft:"#373737"
+    soft:"#373737",
+    btnColor:"#55f56a84"
 }
 
 export const lightTheme = {
@@ -12,5 +13,6 @@ export const lightTheme = {
     text:"black",
     textSoft:"#606060",
     soft:"#f5f5f5",
-    softRed:"#red"
+    softRed:"#red",
+    btnColor:"green"
 }
