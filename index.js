@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 import Routes from "./routes/send.js";
 
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 const Uri = process.env.MONGO_URL;
 
 const connect = () => {
